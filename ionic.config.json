@@ -1,0 +1,7 @@
+{
+  "name": "projetoUnisuamMobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

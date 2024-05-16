@@ -1,0 +1,8 @@
+<swiper-container [loop]="true">
+  <swiper-slide *ngFor="let item of sliderInputValue" (click)="sliderClickEventTrigger(item.modelItem)">
+    <img src="{{item.image}}" alt="">
+    <!-- <img src="{{item.posterPath}}" alt=""> -->
+    <h2 class="ion-hide-xl text-content">{{item.title}}</h2>
+  </swiper-slide>
+  <div class="swiper-pagination"></div>
+</swiper-container>

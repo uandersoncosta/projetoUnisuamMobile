@@ -17,7 +17,7 @@ export class Tab2Page {
     public theMoviedbService: ThemoviedbService,
     public loadingController: LoadingController,
   ){
-    // Carrega filmes ao inicializar o componente
+    // Carrega filmes ao inicializar o componente.
     this.carregarFilmes();
   }
   

@@ -1,21 +1,36 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
-export interface TrendingAllItem {
-  id: number;
-  title: string;
-  backdrop_path: string;
-  poster_path: string;
-}
 
+// -----> REFIZ O CODIGO POIS ANTERIORMENTE DAVA ERRO <-----
 @Injectable({
+  providedIn: 'root', 
+})
+
+export class ThemoviedbService {
+
+  private chave="93c34f1f0f9fccd46c2dfee35628d74a";
+  private caminhoPadrao="https://api.themoviedb.org/3";
+  
+  constructor(public http:HttpClient) { }
+
+  public getPopularMovies(page=1, language="pt") {
+    let filmes=`${this.caminhoPadrao}/movie/popular?page=${page}&language=${language}&api_key=${this.chave}`
+    return this.http.get(filmes);
+  }
+}
+  
+
+/*  -----> AQUI PRA BAIXO EU NÃO ENTENDI MAS PRESERVEI O CODIGO CASO FUNCIONE POSTERIORMENTE. <-----
+
+  @Injectable({
   providedIn: 'root',
 })
 export class ThemoviedbService {
   constructor(private http: HttpClient) {}
   private apiKey: string = 'c99cd1ab9066c1e5ed74173252360bf1';
 
+  // Não entendi esses codigos abaixo, 
   private generateCommonParams(): { headers: HttpHeaders; params: HttpParams } {
     const headers = new HttpHeaders();
     const params = new HttpParams()
@@ -56,4 +71,4 @@ export class ThemoviedbService {
     const { headers, params } = this.generateCommonParams();
     return this.http.get(requestUrl, { headers, params });
   }
-}
+} */

@@ -1,27 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title style="align: center;">
+    <ion-title>
       Lista de Filmes
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Feed</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
   <ion-card *ngFor="let filme of listaFilmes">
-    <img src="https://image.tmdb.org/t/p/w250'+filme.backdrop_path"/>
+    <ion-img [src]="'https://image.tmdb.org/t/p/w500/'+filme.backdrop_path"></ion-img> 
     <ion-card-header>
       <ion-card-title>{{ filme.title }}</ion-card-title>
       <ion-card-subtitle>Nota: {{filme.vote_average}}</ion-card-subtitle>
     </ion-card-header>
-
     <ion-card-content>
-      {{filme.overview}}
+      {{ filme.overview }}
     </ion-card-content>
   </ion-card>
 

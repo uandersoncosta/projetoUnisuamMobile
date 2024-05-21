@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ThemoviedbService } from '../projects/api/service/themoviedb.service';
 import { LoadingController } from '@ionic/angular';
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -64,5 +65,21 @@ export class Tab2Page {
     await this.carregarFilmes();
     event.target.complete();
     console.log("Finalizando refresh");
+  }
+  //Scroll Infinito.
+  loadMoreData(event: any) {
+    this.page += 1; // Incrementa a página para carregar a próxima página de dados
+    this.theMoviedbService.getPopularMovies(this.page, 'pt').subscribe({
+      next: (data: any) => {
+        const response = data;
+        this.listaFilmes = this.listaFilmes.concat(response.results);
+        console.log(this.listaFilmes);
+        event.target.complete(); // Completa a ação de scroll infinito
+      },
+      error: (error: any) => {
+        console.log('Erro ao carregar mais filmes:', error);
+        event.target.complete(); // Completa a ação de scroll infinito mesmo em caso de erro
+      }
+    });
   }
 }

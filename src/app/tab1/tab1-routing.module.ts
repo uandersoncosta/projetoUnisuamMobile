@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Tab1Page } from './tab1.page';
-import { SliderComponent } from '../projects/component/slider/slider.component';
 
 const routes: Routes = [
   {

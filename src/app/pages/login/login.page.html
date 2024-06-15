@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>
+  <div class="titulo">
     <p>Faça o login para ter acesso ao aplicativo</p>
   </div>
 
@@ -19,10 +19,11 @@
         <ion-input></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
-      <a>Esqueci minha senha</a>
+      <a class="esqueciSenha">Esqueci minha senha</a>
       <ion-button>Entrar</ion-button>
     </div>
-    <div>
+    <div class="cadastro">
+      <p>Não tem conta? <a>Cadastre-se</a></p>
       <!-- [routerLink="['/resetar-senha']"] -->
     </div>
   </form>

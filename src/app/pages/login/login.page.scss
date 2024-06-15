@@ -2,7 +2,7 @@
   margin: 0;
 }
 
-div p {
+.titulo{
   text-align: center;
   padding: 1rem;
 }
@@ -12,9 +12,14 @@ ion-button {
   padding: 1rem;
 }
 
-form a{
+form .esqueciSenha{
   display: block;
   text-align: end;
   font-size: 12px;
   padding: 0.5rem;
+}
+
+.cadastro {
+  text-align: center;
+  padding: 1rem;
 }

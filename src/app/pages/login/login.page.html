@@ -19,12 +19,11 @@
         <ion-input></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
-      <a class="esqueciSenha">Esqueci minha senha</a>
+      <a [routerLink]="['/reset-password']" class="esqueciSenha">Esqueci minha senha</a>
       <ion-button>Entrar</ion-button>
     </div>
     <div class="cadastro">
-      <p>Não tem conta? <a>Cadastre-se</a></p>
-      <!-- [routerLink="['/resetar-senha']"] -->
+      <p>Não tem conta? <a [routerLink]="['/signup']">Cadastre-se</a></p>
     </div>
   </form>
 </ion-content>

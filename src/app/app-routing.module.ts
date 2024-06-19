@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'signup', loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupPageModule) },
   { path: 'reset-password', loadChildren: () => import('./pages/reset-password/reset-password.module').then(m => m.ResetPasswordPageModule) },
   { path: 'home', loadChildren: () => import('./tab2/tab2.module').then(m => m.Tab2PageModule) }, // Rota para 'home'
-  { path: '**', redirectTo: 'login', pathMatch: 'full' } // Rota padrão para casos não previstos
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }, // Rota padrão para casos não previstos
 ];
 
 @NgModule({

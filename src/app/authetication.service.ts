@@ -51,4 +51,5 @@ export class AuthenticationService {
   async getCurrentUser(): Promise<firebase.User | null> {
     return await this.ngFireAuth.currentUser;
   }
+
 }

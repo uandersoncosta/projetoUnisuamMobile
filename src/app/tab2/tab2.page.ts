@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ThemoviedbService } from '../projects/api/service/themoviedb.service';
-import { LoadingController } from '@ionic/angular';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
+import { AuthenticationService } from '../authetication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -9,20 +10,21 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
   styleUrls: ['tab2.page.scss'],
   providers: [ThemoviedbService],
 })
-
 export class Tab2Page {
   listaFilmes: any[] = [];
+  filteredFilmes: any[] = [];
   public page: number = 1;
+  searchTerm: string = '';
 
   constructor(
     public theMoviedbService: ThemoviedbService,
     public loadingController: LoadingController,
-  ){
-    // Carrega filmes ao inicializar o componente.
+    private authService: AuthenticationService,
+    private router: Router
+  ) {
     this.carregarFilmes();
   }
-  
-  // Método feito carregar filmes da API.
+
   async carregarFilmes() {
     const loading = await this.loadingController.create({
       message: 'Carregando filmes',
@@ -30,11 +32,11 @@ export class Tab2Page {
     });
     await loading.present();
 
-     // Chama o serviço para obter os filmes.
     this.theMoviedbService.getPopularMovies(this.page, 'pt').subscribe({
       next: (data: any) => {
         const response = data;
         this.listaFilmes = response.results;
+        this.filteredFilmes = [...this.listaFilmes];
         console.log(this.listaFilmes);
         loading.dismiss();
       },
@@ -45,7 +47,6 @@ export class Tab2Page {
     });
   }
 
-  // Método para definir um spinner por um tempo definido.
   async efeitoLoading() {
     const loading = await this.loadingController.create({
       message: 'Carregando filmes',
@@ -59,27 +60,48 @@ export class Tab2Page {
   ionViewDidEnter() {
     this.carregarFilmes();
   }
-  //Ação de refresh puxando para baixo.
+
   async efeitoRefresh(event: any) {
     this.page = 1;
     await this.carregarFilmes();
     event.target.complete();
     console.log("Finalizando refresh");
   }
-  //Scroll Infinito.
+
   loadMoreData(event: any) {
-    this.page += 1; // Incrementa a página para carregar a próxima página de dados
+    this.page += 1;
     this.theMoviedbService.getPopularMovies(this.page, 'pt').subscribe({
       next: (data: any) => {
         const response = data;
         this.listaFilmes = this.listaFilmes.concat(response.results);
+        this.filteredFilmes = this.filteredFilmes.concat(response.results);
         console.log(this.listaFilmes);
-        event.target.complete(); // Completa a ação de scroll infinito
+        event.target.complete();
       },
       error: (error: any) => {
         console.log('Erro ao carregar mais filmes:', error);
-        event.target.complete(); // Completa a ação de scroll infinito mesmo em caso de erro
+        event.target.complete();
       }
     });
+  }
+
+  filterMovies(event: any) {
+    const val = event.target.value.toLowerCase();
+    if (val && val.trim() !== '') {
+      this.filteredFilmes = this.listaFilmes.filter((filme) => {
+        return filme.title.toLowerCase().indexOf(val) > -1;
+      });
+    } else {
+      this.filteredFilmes = [...this.listaFilmes];
+    }
+  }
+
+  async logout() {
+    try {
+      await this.authService.signOut();
+      this.router.navigate(['/login']); // Redireciona para a página de login após o logout
+    } catch (error) {
+      console.log('Erro ao fazer logout:', error);
+    }
   }
 }

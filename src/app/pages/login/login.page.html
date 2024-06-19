@@ -9,35 +9,36 @@
     <p>Faça o login para ter acesso ao aplicativo</p>
   </div>
 
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="signIn()">
     <div class="ion-padding">
       <ion-item>
-        <ion-input placeholder="E-mail"></ion-input>
+        <ion-input formControlName="email" placeholder="E-mail"></ion-input>
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
-              <div *ngIf="this.loginForm.controls?.['email'].touched && this.loginForm.controls?['email'].invalid">
-                <ion-text *ngIf="errorControl.email.errors?.required">
-                  Insira um e-mail.
-                </ion-text>
-                <ion-text *ngIf="errorControl.email.errors?.pattern">
-                  Insira um e-mail válido.
-                </ion-text>
-              </div>
+      <div *ngIf="errorControl['email'].touched && errorControl['email'].invalid">
+        <ion-text *ngIf="errorControl['email'].errors?.required">
+          Insira um e-mail.
+        </ion-text>
+        <ion-text *ngIf="errorControl['email'].errors?.pattern">
+          Insira um e-mail válido.
+        </ion-text>
+      </div>
+
       <ion-item>
-        <ion-input placeholder="Senha"></ion-input>
+        <ion-input formControlName="password" type="password" placeholder="Senha"></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
-            <div *ngIf="this.loginForm.controls?.['password'].touched && this.loginForm.controls?['password'].invalid">
-              <ion-text *ngIf="errorControl.password.errors?.required">
-                Insira uma senha.
-              </ion-text>
-              <ion-text *ngIf="errorControl.password.errors?.pattern">
-                a senha precisa ter uma letra maiúscula, uma letra minúscula, um caracter especial e um número. no mínimo oito caracteres
-              </ion-text>
-            </div>
+      <div *ngIf="errorControl['password'].touched && errorControl['password'].invalid">
+        <ion-text *ngIf="errorControl['password'].errors?.required">
+          Insira uma senha.
+        </ion-text>
+        <ion-text *ngIf="errorControl['password'].errors?.pattern">
+          A senha precisa ter uma letra maiúscula, uma letra minúscula, um caracter especial e um número, com no mínimo oito caracteres.
+        </ion-text>
+      </div>
 
       <a [routerLink]="['/reset-password']" class="esqueciSenha">Esqueci minha senha</a>
-      <ion-button>Entrar</ion-button>
+      <ion-button type="submit">Entrar</ion-button>
     </div>
     <div class="cadastro">
       <p>Não tem conta? <a [routerLink]="['/signup']">Cadastre-se</a></p>

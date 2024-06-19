@@ -1,31 +1,54 @@
 import { Injectable } from '@angular/core';
-import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from '@angular/fire/compat/Auth';
+import { UserCredential } from '@firebase/auth-types';
+import firebase from 'firebase/compat/app';
+
 @Injectable({
   providedIn: 'root'
 })
-export class AutheticationService {
+export class AuthenticationService {
 
   constructor(public ngFireAuth: AngularFireAuth) { }
 
-  async registerUser(email:string,password:string){
-    return await this.ngFireAuth.createUserWithEmailAndPassword(email,password)
-
+  async registerUser(email: string, password: string): Promise<UserCredential> {
+    try {
+      const userCredential = await this.ngFireAuth.createUserWithEmailAndPassword(email, password);
+      return userCredential;
+    } catch (error) {
+      console.error('Erro ao registrar usuário:', error);
+      throw error; // Lança o erro para ser tratado no componente que chama este método
+    }
   }
 
-  async loginUser(email:string,password:string){
-    return await this.ngFireAuth.signInWithEmailAndPassword(email,password)
+  async loginUser(email: string, password: string): Promise<UserCredential> {
+    try {
+      const userCredential = await this.ngFireAuth.signInWithEmailAndPassword(email, password);
+      return userCredential;
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+      throw error; // Lança o erro para ser tratado no componente que chama este método
+    }
   }
 
-  async resetPasword(email:string){
-    return await this.ngFireAuth.sendPasswordResetEmail(email)
+  async resetPassword(email: string): Promise<void> {
+    try {
+      await this.ngFireAuth.sendPasswordResetEmail(email);
+    } catch (error) {
+      console.error('Erro ao enviar e-mail de redefinição de senha:', error);
+      throw error; // Lança o erro para ser tratado no componente que chama este método
+    }
   }
 
-  async signOut(){
-    return await this.ngFireAuth.signOut()
+  async signOut(): Promise<void> {
+    try {
+      await this.ngFireAuth.signOut();
+    } catch (error) {
+      console.error('Erro ao fazer logout:', error);
+      throw error; // Lança o erro para ser tratado no componente que chama este método
+    }
   }
 
-  async getProfile(){
-    return await this.ngFireAuth.currentUser
+  async getCurrentUser(): Promise<firebase.User | null> {
+    return await this.ngFireAuth.currentUser;
   }
-} 
+}

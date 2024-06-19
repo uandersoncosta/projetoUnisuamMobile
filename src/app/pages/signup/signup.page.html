@@ -9,50 +9,51 @@
     <p>Crie sua conta para ter acesso ao aplicativo</p>
   </div>
 
-  <form [formGroup]="regForm" novalidate>
-
-    <div class="ion-padding">
-      <ion-item>
-        <ion-input formControlName="fullname" placeholder="Nome"></ion-input>
-        <ion-icon name="person-outline"></ion-icon>
-      </ion-item>
-      <div *ngIf="this.regForm.controls?.['fullname'].touched && this.regForm.controls?['fullname'].invalid">
-        <ion-text *ngIf="errorControl.fullname.errors?.required">
-          insira o seu Nome Completo.
-        </ion-text>
-      </div>
-
-      <ion-item>
-        <ion-input formControlName="email" placeholder="E-mail"></ion-input>
-        <ion-icon name="person-outline"></ion-icon>
-      </ion-item>
-      <div *ngIf="this.regForm.controls?.['email'].touched && this.regForm.controls?['email'].invalid">
-        <ion-text *ngIf="errorControl.email.errors?.required">
-          Insira um e-mail.
-        </ion-text>
-        <ion-text *ngIf="errorControl.email.errors?.pattern">
-          Insira um e-mail válido.
-        </ion-text>
-      </div>
-
-      <ion-item>
-        <ion-input formControlName="password" placeholder="Senha"></ion-input>
-        <ion-icon name="lock-closed-outline"></ion-icon>
-      </ion-item>
-      <div *ngIf="this.regForm.controls?.['password'].touched && this.regForm.controls?['password'].invalid">
-        <ion-text *ngIf="errorControl.password.errors?.required">
-          Insira uma senha.
-        </ion-text>
-        <ion-text *ngIf="errorControl.password.errors?.pattern">
-          a senha precisa ter uma letra maiúscula, uma letra minúscula, um caracter especial e um número. no mínimo oito caracteres
-        </ion-text>
-      </div>
-
-
-      <ion-button>Cadastrar</ion-button>
+  <!-- signup.page.html -->
+<form [formGroup]="regForm" novalidate>
+  <div class="ion-padding">
+    <ion-item>
+      <ion-input formControlName="fullname" placeholder="Nome"></ion-input>
+      <ion-icon name="person-outline"></ion-icon>
+    </ion-item>
+    <div *ngIf="errorControl['fullname'].touched && errorControl['fullname'].invalid">
+      <ion-text *ngIf="errorControl['fullname'].errors?.required">
+        Insira o seu Nome Completo.
+      </ion-text>
     </div>
-    <div class="login">
-      <p>Já tem conta? <a [routerLink]="['/login']">Faça o login</a></p>
+
+    <ion-item>
+      <ion-input formControlName="email" placeholder="E-mail"></ion-input>
+      <ion-icon name="person-outline"></ion-icon>
+    </ion-item>
+    <div *ngIf="errorControl['email'].touched && errorControl['email'].invalid">
+      <ion-text *ngIf="errorControl['email'].errors?.required">
+        Insira um e-mail.
+      </ion-text>
+      <ion-text *ngIf="errorControl['email'].errors?.pattern">
+        Insira um e-mail válido.
+      </ion-text>
     </div>
-  </form>
+
+    <ion-item>
+      <ion-input formControlName="password" placeholder="Senha"></ion-input>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-item>
+    <div *ngIf="errorControl['password'].touched && errorControl['password'].invalid">
+      <ion-text *ngIf="errorControl['password'].errors?.required">
+        Insira uma senha.
+      </ion-text>
+      <ion-text *ngIf="errorControl['password'].errors?.pattern">
+        A senha precisa ter uma letra maiúscula, uma letra minúscula, um caracter especial e um número. No mínimo oito caracteres.
+      </ion-text>
+    </div>
+
+    <ion-button (click)="signUp()">Cadastrar</ion-button>
+  </div>
+
+  <div class="login">
+    <p>Já tem conta? <a [routerLink]="['/login']">Faça o login</a></p>
+  </div>
+</form>
+
 </ion-content>

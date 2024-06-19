@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-   firebaseConfig : {
-    apiKey: "AIzaSyAmiQeYlGkkaC3MWeVKEA2jHdV02IMxnUk",
-    authDomain: "projetounisuammobile.firebaseapp.com",
-    projectId: "projetounisuammobile",
-    storageBucket: "projetounisuammobile.appspot.com",
-    messagingSenderId: "166382032395",
-    appId: "1:166382032395:web:a6a29459ab5636b08d990e",
-    measurementId: "G-4T3LJ04LKR"
+  firebaseConfig : {
+    apiKey: "AIzaSyCELDrBgN-gNt4NkxZYffcjEiLQmnj09Kw",
+    authDomain: "projetounisuammobile-97588.firebaseapp.com",
+    projectId: "projetounisuammobile-97588",
+    storageBucket: "projetounisuammobile-97588.appspot.com",
+    messagingSenderId: "621707583206",
+    appId: "1:621707583206:web:649aa2843f67781302e527",
+    measurementId: "G-VBCGE5WKJN"
   }
 };
 

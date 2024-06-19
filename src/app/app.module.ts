@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
     HttpClientModule,
     ProjectComponentModule, 
-    AngularFireModule, 
+    AngularFireModule,
     AngularFireAuthModule, 
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],

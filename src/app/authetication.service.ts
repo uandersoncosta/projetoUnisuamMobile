@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/Auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth'; // Atualizado o caminho
 import { UserCredential } from '@firebase/auth-types';
 import firebase from 'firebase/compat/app';
 
@@ -51,5 +51,4 @@ export class AuthenticationService {
   async getCurrentUser(): Promise<firebase.User | null> {
     return await this.ngFireAuth.currentUser;
   }
-
 }

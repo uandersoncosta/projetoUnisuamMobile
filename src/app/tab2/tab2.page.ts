@@ -32,10 +32,10 @@ export class Tab2Page {
     });
     await loading.present();
 
-    this.theMoviedbService.getPopularMovies(this.page, 'pt').subscribe({
+    this.theMoviedbService.getPopularMovies(this.page).subscribe({
       next: (data: any) => {
         const response = data;
-        this.listaFilmes = response.results;
+        this.listaFilmes = response.articles;
         this.filteredFilmes = [...this.listaFilmes];
         console.log(this.listaFilmes);
         loading.dismiss();
@@ -70,11 +70,11 @@ export class Tab2Page {
 
   loadMoreData(event: any) {
     this.page += 1;
-    this.theMoviedbService.getPopularMovies(this.page, 'pt').subscribe({
+    this.theMoviedbService.getPopularMovies(this.page).subscribe({
       next: (data: any) => {
         const response = data;
-        this.listaFilmes = this.listaFilmes.concat(response.results);
-        this.filteredFilmes = this.filteredFilmes.concat(response.results);
+        this.listaFilmes = this.listaFilmes.concat(response.articles);
+        this.filteredFilmes = this.filteredFilmes.concat(response.articles);
         console.log(this.listaFilmes);
         event.target.complete();
       },

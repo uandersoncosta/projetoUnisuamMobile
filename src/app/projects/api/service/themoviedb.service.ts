@@ -9,13 +9,13 @@ import { Injectable } from '@angular/core';
 
 export class ThemoviedbService {
 
-  private chave="93c34f1f0f9fccd46c2dfee35628d74a";
-  private caminhoPadrao="https://api.themoviedb.org/3";
+  private chave="069ee216d2914195be6b4dfedf087ced";
+  private caminhoPadrao="https://newsapi.org/v2/everything";
   
   constructor(public http:HttpClient) { }
 
-  public getPopularMovies(page=1, language="pt") {
-    let filmes=`${this.caminhoPadrao}/movie/popular?page=${page}&language=${language}&api_key=${this.chave}`
+  public getPopularMovies(page=1) {
+    let filmes=`${this.caminhoPadrao}?domains=globo.com&page=${page}&apiKey=${this.chave}`
     return this.http.get(filmes);
   }
 }

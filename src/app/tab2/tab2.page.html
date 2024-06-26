@@ -20,13 +20,13 @@
   </ion-refresher>
 
   <ion-card *ngFor="let filme of filteredFilmes">
-    <ion-img [src]="'https://image.tmdb.org/t/p/w500/'+filme.backdrop_path"></ion-img>
+    <ion-img [src]="filme.urlToImage"></ion-img>
     <ion-card-header>
       <ion-card-title>{{ filme.title }}</ion-card-title>
-      <ion-card-subtitle>Nota: {{filme.vote_average}}</ion-card-subtitle>
+      <ion-card-subtitle>Publicado: {{ filme.publishedAt | date: 'dd/MM/yyyy HH:mm' }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      {{ filme.overview }}
+      {{ filme.description }}
     </ion-card-content>
   </ion-card>
 

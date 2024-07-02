@@ -27,7 +27,7 @@ export class Tab2Page {
 
   async carregarFilmes() {
     const loading = await this.loadingController.create({
-      message: 'Carregando filmes',
+      message: 'Carregando noticiais',
       spinner: 'lines',
     });
     await loading.present();
@@ -49,7 +49,7 @@ export class Tab2Page {
 
   async efeitoLoading() {
     const loading = await this.loadingController.create({
-      message: 'Carregando filmes',
+      message: 'Carregando noticiais',
       duration: 1000,
       spinner: 'lines',
     });

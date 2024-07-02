@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Lista de Filmes
+      Lista de Noticiais
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="logout()">
@@ -31,9 +31,7 @@
   </ion-card>
 
   <ion-infinite-scroll (ionInfinite)="loadMoreData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Carregando mais filmes...">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais filmes...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
